@@ -16,11 +16,11 @@
   <div class="container">
     <h2>Sign Here</h2>
     <ul>
-      <form action="/sign" method="POST">
-        {% csrf_token %}
-        <input type="text" name="name" placeholder="Message" />
-        <button type="submit" style="color: black">Submit</button>
-      </form>
+      <ul>
+        {% for post in post_list %}
+        <li>{{ post.text }}</li>
+        {% endfor %}
+      </ul>
     </ul>
   </div>
 </div>
