@@ -1,6 +1,7 @@
-from django.urls import path, include
-from . import views
+from django.urls import path
+from .views import index, BirthdayMessageView
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path('', index, name='index'),
+    path('messages/', BirthdayMessageView.as_view(), name='birthday_messages'),
 ]

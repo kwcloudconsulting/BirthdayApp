@@ -2,7 +2,7 @@
 <div class="jumbotron text-center">
   <div class="container">
     <a href="/" class="lang-logo">
-      <img src="{% static 'birthday.png'%}" />
+      <img src="{% static 'birthday.png' %}" />
     </a>
     <h1>Happy Birthday Monica!</h1>
     <p>
@@ -12,4 +12,15 @@
   </div>
 </div>
 
+<div class="jumbotron text-center">
+  <div class="container">
+    <h2>Sign Here</h2>
+    <ul>
+      <form method="post" action="{% url 'index' %}">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Submit</button>
+      </form>
+    </ul>
+  </div>
+</div>
 {% endblock %}
