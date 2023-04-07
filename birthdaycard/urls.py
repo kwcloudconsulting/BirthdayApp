@@ -1,6 +1,10 @@
 from django.urls import path, include
-from . import views
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def index(request):
+    return render(request, "index.html")
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("", index, name="index"),
 ]

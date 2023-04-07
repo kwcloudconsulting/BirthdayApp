@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import BirthdayMessage
+from django.views import View
 from .forms import BirthdayMessageForm
 
 @login_required
@@ -15,4 +16,4 @@ def home(request):
             message.save()
             return redirect('home')
     context = {'messages': messages, 'form': form}
-    return render(request, 'home.html', context)
+    return render(request, 'index.html', context)
