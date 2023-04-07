@@ -1,5 +1,6 @@
 from django.urls import path, include
+from . import views
 
 urlpatterns = [
-    path('', include('monica.urls')),
+    path("", views.index, name="index"),
 ]
