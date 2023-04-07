@@ -1,7 +1,7 @@
 from django import forms
-from .models import BirthdayMessage
+from .models import Post
 
-class BirthdayMessageForm(forms.ModelForm):
+class PostForm(forms.ModelForm):
     class Meta:
-        model = BirthdayMessage
-        fields = ['message']
+        model = Post
+        fields = ('title', 'content',)

@@ -1,24 +1,22 @@
 from django.shortcuts import render, redirect
-from .models import BirthdayMessage
-from django.views import View
-from .forms import BirthdayMessageForm
+from django.views.generic import ListView
+from .models import Post
+from .forms import PostForm
 
 def index(request):
-    if request.method == 'POST':
-        form = BirthdayMessageForm(request.POST)
-        if form.is_valid():
-            birthday_message = form.save(commit=False)
-            birthday_message.user = request.user
-            birthday_message.save()
-            return redirect('index')
-    else:
-        form = BirthdayMessageForm()
-    
-    context = {'form': form}
-    return render(request, "index.html", context)
+    return render(request, 'index.html')
 
-class BirthdayMessageView(View):
-    def get(self, request):
-        messages = BirthdayMessage.objects.all().order_by('-date_created')
-        context = {'messages': messages}
-        return render(request, 'birthday_messages.html', context)
+def post_list(request):
+    posts = Post.objects.all()
+    return render(request, 'post_list.html', {'posts': posts})
+
+def post_new(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('post_list')
+    else:
+        form = PostForm()
+    return render(request, 'post_edit.html', {'form': form})

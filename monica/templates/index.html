@@ -16,9 +16,10 @@
   <div class="container">
     <h2>Sign Here</h2>
     <ul>
-      <form method="post" action="{% url 'index' %}">
-        {% csrf_token %} {{ form.as_p }}
-        <button type="submit">Submit</button>
+      <form action="/sign" method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Message" />
+        <button type="submit" style="color: black">Submit</button>
       </form>
     </ul>
   </div>

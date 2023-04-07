@@ -1,10 +1,17 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.db import models
+from django.utils import timezone
 
-class BirthdayMessage(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    message = models.TextField()
-    date_created = models.DateTimeField(auto_now_add=True)
+class Post(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    author_name = models.CharField(max_length=100)
+    created_date = models.DateTimeField(default=timezone.now)
+    published_date = models.DateTimeField(blank=True, null=True)
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
 
     def __str__(self):
-        return f"{self.user.username}'s birthday message"
+        return self.title

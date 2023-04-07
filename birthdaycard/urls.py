@@ -1,10 +1,8 @@
+from django.contrib import admin
 from django.urls import path, include
-from django.shortcuts import render
-from django.http import HttpResponse
-
-def index(request):
-    return render(request, "index.html")
+from monica import views
 
 urlpatterns = [
-    path("", index, name="index"),
+    path('admin/', admin.site.urls),
+    path('', include('monica.urls')),
 ]
