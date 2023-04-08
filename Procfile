@@ -1,1 +1,1 @@
-web: gunicorn birthdaycard.wsgi --log-file -
+web: gunicorn birthdaycard.wsgi
